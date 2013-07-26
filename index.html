@@ -1,0 +1,85 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Kimberly's Mileage Tracker</title>
+	
+	<script src="js/vendor/underscore.js"></script>
+	<script src="js/vendor/jquery-1.9.1.js"></script>
+	<script src="js/vendor/angular.min.js"></script>
+	<script src="js/vendor/jaydata.js"></script>
+	<script src="js/vendor/angular.datepicker.js"></script>
+	<script src="js/vendor/jquery-ui-1.10.3.custom.min.js"></script>
+	<script src="js/app.js"></script>
+	
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/bootstrap-responsive.min.css">
+	<link rel="stylesheet" href="css/flat-ui.css">
+
+	<link rel="stylesheet" href="css/main.css">
+</head>
+
+
+<body ng-app="mileageTracker">
+
+	<div class="container" ng-controller="TripCrtl">
+
+		<form class="form-inline" ng-submit="addTrip(newTrip)">
+
+			<input placeholder="Origin" type="text" ng-model="newTrip.origin" required>
+			<input placeholder="Destination" type="text" ng-model="newTrip.destination" required>
+			<div class="input-append">
+				<input class="input-mini" class="span2" id="appendedInput" placeholder="Miles" type="text" ng-model="newTrip.miles" required>
+				<span class="add-on">miles</span>
+			</div>
+			<input type="text" class="input-small" placeholder="02/02/2002" ui-date ui-date-format="DD, d MM, yy" ng-model="newTrip.date" required>
+			<button class="btn btn-primary" type="submit">Add Trip</button>
+		</form>
+
+
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th class="origin">Origin</th>
+					<th class="destination">Destination</th>
+					<th class="miles">Miles</th>
+					<th class="date">Date</th>
+				</tr>
+			</thead>
+			
+			<tr ng-repeat="trip in trips | orderBy: '-date'">
+				<td class="origin">
+					{{trip.origin}}
+				</td>
+				<td class="destination">
+					{{trip.destination}}
+				</td>	
+				<td class="miles">
+					{{trip.miles}}
+				</td>
+				<td class="date">
+					{{trip.date | date:'M-dd-yyyy'}}
+				</td>
+
+				<td class="buttons">
+					<button class="btn btn-info" ng-click="copy(trip)">
+						Copy
+					</button>
+					<button class="btn btn-danger" ng-click="remove(trip)">
+						Delete
+					</button>
+				</td>
+			</tr>
+		
+		</table>
+
+		<form class="form-inline" ng-submit="export(exportTrips)">
+			<input placeholder="Starting Mileage" type="text" ng-model="exportTrips.start" required>
+			<input placeholder="Ending Mileage" type="text" ng-model="exportTrips.end" required>
+			<button class="btn btn-primary" type="submit">Export Trips</button>
+		</form>
+
+	</div>
+
+
+</body>
+</html>

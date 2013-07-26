@@ -1,0 +1,32 @@
+@import url(http://fonts.googleapis.com/css?family=Archivo+Narrow);
+
+
+.container {
+    margin: 0 auto;
+    width: 1000px;
+    margin-top: 20px;
+}
+
+i {
+    margin-left: 10px;
+}
+
+/*.origin {
+	width: 200px;
+}
+
+.destination {
+	width: 200px;
+}
+
+.miles {
+	width: 50px;
+}
+
+.date {
+	width: 100px;
+}
+
+.buttons {
+	margin-left: 200px;
+}*/
